@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Trash Hero</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h3 class="logo">
+                <img src="images/logo.png" alt="Trash Hero Logo">
+            </h3>
+            <ul>
+                <li>Home</li>
+                <li>About Me</li>
+                <li>Points</li>
+                <li>Learn</li>
+            </ul>
+        </div>
+    </header>
+    <section class="hero">
+        <h1>Become a Trash Hero⭐</h1>
+        <p>Collect trash, earn points, and help save the earth! are you ready?</p>
+        <a href="#about"><button>Start Being a Hero</button></a> 
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="about">
+        <h2>What is Trash Hero?"</h2>
+        <p>Trash Hero is a website that encpurages people to collect trash and help protect the environment. By detecting and sorting waste, in this web, eveyone can be a hero!</p>
+    </section>
+
+    <section id="camera">
+    <h2>Scan Your Trash!</h2>
+    <p class="scan-text">Point your camera to trash to detect the type</p>
+
+    <div class="camera-box">
+        <div id="camera-feed"></div>
+        <div class="scan-line"></div>
+    </div>
+
+    <div class="camera-buttons">
+        <button id="openCam">Open Camera</button>
+        <button id="detectTrashBtn">Detect Trash</button>
+    </div>
+    <p id="result">Waiting for scan...</p>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image"></script>
+
+    <script>
+    const URL = "https://teachablemachine.withgoogle.com/models/TCknCdyIQ/";
+    let model, webcam, labelContainer, maxPredictions;
+
+    document.getElementById("openCam").addEventListener("click", async () => {
+        await init();
+    });
+
+    async function init() {
+        if (!model) {
+            const modelURL = URL + "model.json";
+            const metadataURL = URL + "metadata.json";
+            model = await tmImage.load(modelURL, metadataURL);
+            maxPredictions = model.getTotalClasses();
+        }
+
+        if (!webcam) {
+            webcam = new tmImage.Webcam(300, 300, true); // width, height, flip
+            await webcam.setup(); // request akses kamera
+            document.getElementById("camera-feed").innerHTML = ""; // clear dulu
+            document.getElementById("camera-feed").appendChild(webcam.canvas);
+            await webcam.play();
+            window.requestAnimationFrame(loop);
+            labelContainer = document.getElementById("result");
+        }
+    }
+
+    async function loop() {
+        if (!webcam) return;
+        webcam.update();
+        await predict();
+        window.requestAnimationFrame(loop);
+    }
+
+    async function predict() {
+        if (!webcam) return;
+        const prediction = await model.predict(webcam.canvas);
+        let highest = prediction[0];
+        for (let i = 1; i < prediction.length; i++) {
+            if (prediction[i].probability > highest.probability) {
+                highest = prediction[i];
+            }
+        }
+        labelContainer.innerHTML =
+            "Detected: " + highest.className + 
+            " (" + (highest.probability*100).toFixed(1) + "%)";
+    }
+
+    document.getElementById("detectTrashBtn").addEventListener("click", async () => {
+        if (!webcam) {
+            alert("Please open the camera first!");
+            return;
+        }
+        await predict();
+    });
+    </script>
+</body>
+</html>
