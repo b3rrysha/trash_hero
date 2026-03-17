@@ -1,0 +1,175 @@
+@font-face {
+    font-family: "MyFont";
+    src: url("fonts/VCR_OSD_MONO_1.001.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "IFont";
+    src: url("trash-hero/fonts/new-spirit-condensed.otf") format("truetype");
+}
+
+html, body, header {
+    margin: 0;
+    padding: 0;
+    font-size: 27px;
+    font-family: "MyFont";
+}
+
+.container{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 17vh;
+    background: linear-gradient(to bottom, #9bfffa, #d4fff9);
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    box-shadow: 3px 3px 3px rgb(0, 0, 0);
+    gap: 60px;
+}
+
+.desc{
+  background: linear-gradient(to bottom, #ffa8e5, #ffd4ec);
+  padding: 40px;
+  border-radius: 20px;
+  width: 900px;
+  margin-left: 0px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(3, 0, 0, 0.5);
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 10px 25px rgba(255,182,193,0.3);
+    }
+    to {
+        box-shadow: 0 15px 40px rgba(255,182,193,0.7);
+    }
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px;
+}
+
+.hero2 {
+    text-align: center;
+    padding: 120px 20px;
+    height: 500px;
+    font-size: 27px;
+    font-family: "NewFont";
+    background-image: url(images/bg3.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@keyframes spin{
+  from{
+    transform:rotate(0deg);
+  }
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+.vinyl-box{
+  border: 2px solid #ccc;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(3, 0, 0, 0.5);
+  border-radius: 20px;
+  padding: 20px;
+  height: 303px;
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.2);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.vinyl-box button{
+    margin-top: -350px;
+    padding: 12px 25px;
+    border: none;
+    background: #77d9ff;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.vinyl-box button:hover{
+    background-color: #57a0ff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgb(0, 0, 0, 0.2);
+}
+
+.vinyl-img{
+  width: 240px;
+  height: auto;
+  margin-left: 20px;
+  justify-content: center;
+  animation: spin 6s linear infinite;
+  align-items: center;
+  transform-origin: center;
+  border-radius: 50%;
+}
+
+.vinyl-img:hover{
+  transform: scale(1.05) rotate(10deg);
+  transition: 0.3s;
+}
+
+.song-tittle{
+  font-family: "IFont";
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #661313;
+}
+
+.desc, .vinyl-box, .photo {
+    transition: all 0.3s ease;
+    margin-top: -210px;
+}
+.desc:hover, .vinyl-box:hover, .photo:hover {
+    transform: translateY(-5px) scale(1.02);
+}
+
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.096);
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+    }
+}
+
+.mini-text {
+    position: absolute;
+    top: 110px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px;
+    opacity: 0.6;
+}
+
+#about::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+    pointer-events: none;
+}
