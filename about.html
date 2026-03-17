@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style3.css">
+    <title>About me</title>
+</head>
+<body>
+    <header>
+            <div class="container">
+            <h3 class="text"></h3><h1>About Me💌</h1></h3>
+        </div>
+     </header>
+     <section class="hero2">
+        <div class="wrapper">
+            <p class="mini-text">꒰ა ♡ ໒꒱ welcome to my little world</p>
+            <div class="desc">
+                <h3>Hi, I'm Shasha</h3>
+                <p>My Full name is Aqilah Falisha Maharsi. I'm a 7th grade student, 
+                    im a student who loves technology and the environment.I created Trash Hero to encourage people 
+                    to recycle and understand different types of waste. My goal is to make learning about recycling fun and interactive!</p>
+            </div>
+            <div class="vinyl-box">
+                <img src="images/vinyl.png" class="vinyl-img" onclick="playMusic()">
+                <p class="song-tittle">Indahnya Dirimu - Hi-vi!</p>
+                <button onclick="goBack()">⬅ Back</button>
+                <script>function goBack(){window.location.href="Th.html"}</script>
+                <script>let points = 150; 
+                document.getElementById("points").innerText = points; 
+                let count = 0;
+                let target = 150;
+
+                let interval = setInterval(() => {
+                count++;
+                document.getElementById("points").innerText = count;
+
+                if(count >= target){
+                    clearInterval(interval);
+                }
+                }, 20);</script> 
+            </div>
+            <audio id="song">
+            <source src="sound/hivi.mpeg" type="audio/mpeg">
+            </audio>
+            <div class="photo">
+                <img src="images/photo.png">
+            </div>
+        </div>
+        <script>
+        function playMusic(){
+            document.getElementById("song").play();
+            }</script>
+     </section>
+</body>
+</html>
