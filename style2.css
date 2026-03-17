@@ -1,0 +1,73 @@
+@font-face {
+    font-family: "MyFont";
+    src: url("fonts/VCR_OSD_MONO_1.001.ttf") format("truetype");
+}
+
+html, body, header {
+    margin: 0;
+    padding: 0;
+    font-size: 27px;
+    font-family: "MyFont";
+}
+
+.container{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 17vh;
+    background: linear-gradient(to bottom, #e6cb33, #fdfccd);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 3px 3px 3px rgb(0, 0, 0);
+}
+
+.hero1 {
+    text-align: center;
+    padding: 120px 20px;
+    height: 500px;
+    font-size: 27px;
+    font-family: "NewFont";
+    background-image: url(images/bglgi.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero1 button{
+    margin-top: 20px;
+    padding: 12px 25px;
+    border: none;
+    background: #77d9ff;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.hero1 button:hover{
+    background-color: #57a0ff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgb(0, 0, 0, 0.2);
+}
+
+
+.points {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.points-box{
+  background: linear-gradient(to bottom, #ff83da, #ffd4ec);
+  padding: 40px;
+  border-radius: 20px;
+  width: 400px;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(3, 0, 0, 0.5);
+}
